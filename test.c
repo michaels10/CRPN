@@ -5,6 +5,7 @@
 
 double *stack;
 int stackPos = 0;
+int stackL = 8;
 
 bool isDigit(char *in);
 double evaluate(char *toEval);
@@ -15,7 +16,7 @@ char ** parseStr();
 
 
 int main() {
-    stack = malloc(8);
+    stack = *malloc(8);
     printf("Enter calculation: ");
     char *input = NULL;
     size_t len = 0;
@@ -62,8 +63,8 @@ bool isDigit(char *in){
 //STACK OPERATIONS.
 void push(double value){
     //expand stack if it's too small.
-    if(stackPos == sizeof(stack)){
-        stack = realloc(stack, sizeof(stack)*2);
+    if(stackPos == stackL){
+        stack = realloc(stack, stackL*2);
     }
     stack[stackPos] = value;
     stackPos++;
